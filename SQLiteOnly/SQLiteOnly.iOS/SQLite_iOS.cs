@@ -11,33 +11,12 @@ namespace SQLiteOnly.iOS
 {
     public class SQLite_iOS : ISQLite
     {
-        public SQLite_iOS()
+        public SQLiteAsyncConnection GetConnection()
         {
-        }
+            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var path = Path.Combine(documentsPath, "sqliteonly.db3");
 
-        public SQLiteConnection GetConnection()
-        {
-            // variable for sqlite database file
-            var sqliteFileName = "Contacts.db3";
-
-            // variable for special folder
-            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); // documents folder
-
-            string libraryPath = Path.Combine(documentsPath); // library folder
-
-            var path = Path.Combine(libraryPath, sqliteFileName);
-       
-            
-            // This is where we copy the prepopulated database
-            if (!File.Exists(path))
-            {
-                File.Copy(sqliteFileName, path);
-            }
-
-            var conn = new SQLite.SQLiteConnection(path);
-
-            // return the database connection
-            return conn;
+            return new SQLiteAsyncConnection(path);
         }
     }
 }
