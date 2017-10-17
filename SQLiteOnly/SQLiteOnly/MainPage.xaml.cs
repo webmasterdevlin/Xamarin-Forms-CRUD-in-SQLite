@@ -28,6 +28,7 @@ namespace SQLiteOnly
             await _databaseConnection.CreateTableAsync<Recipe>();
             List<Recipe> recipes = await _databaseConnection.Table<Recipe>().ToListAsync();
             _observableRecipes = new ObservableCollection<Recipe>(recipes);
+            MyListView.ItemsSource = _observableRecipes;
             base.OnAppearing();
         }
 

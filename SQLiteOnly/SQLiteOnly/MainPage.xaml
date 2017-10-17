@@ -11,7 +11,7 @@
             <Button Text="Update" BackgroundColor="Khaki" HorizontalOptions="CenterAndExpand" Clicked="OnUpdate"  />
             <Button Text="Delete" BackgroundColor="Crimson" HorizontalOptions="EndAndExpand" Clicked="OnDelete" />
         </StackLayout>
-        <ListView ItemsSource="{Binding ObservableRecipes}">
+        <ListView x:Name="MyListView" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Name}" />
