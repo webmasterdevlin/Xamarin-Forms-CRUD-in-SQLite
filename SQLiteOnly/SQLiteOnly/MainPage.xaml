@@ -1,15 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:SQLiteOnly"
-             x:Class="SQLiteOnly.MainPage"
-             Padding="20">
-
+             x:Class="SQLiteOnly.MainPage">
     <StackLayout>
         <StackLayout Orientation="Horizontal">
-            <Button Text="Add" BackgroundColor="DarkOliveGreen" HorizontalOptions="StartAndExpand" Clicked="OnAdd" />
-            <Button Text="Update" BackgroundColor="Khaki" HorizontalOptions="CenterAndExpand" Clicked="OnUpdate"  />
-            <Button Text="Delete" BackgroundColor="Crimson" HorizontalOptions="EndAndExpand" Clicked="OnDelete" />
+            <Button Text="Add" BackgroundColor="DodgerBlue" TextColor="{OnPlatform iOS=White}" Padding="20, 10" HorizontalOptions="StartAndExpand" Clicked="OnAdd" />
+            <Button Text="Update" HorizontalOptions="CenterAndExpand" Clicked="OnUpdate"  />
+            <Button Text="Delete" BackgroundColor="Crimson"  TextColor="{OnPlatform iOS=#fff}" Padding="20, 10" HorizontalOptions="EndAndExpand" Clicked="OnDelete" />
         </StackLayout>
         <ListView x:Name="MyListView" >
             <ListView.ItemTemplate>

@@ -1,12 +1,10 @@
 ﻿using SQLite;
-using SQLiteOnly.Annotations;
 using SQLiteOnly.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace SQLiteOnly
 {
@@ -19,6 +17,8 @@ namespace SQLiteOnly
         public MainPage()
         {
             InitializeComponent();
+
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
 
             _databaseConnection = DependencyService.Get<ISQLite>().GetConnection();
         }
@@ -51,33 +51,6 @@ namespace SQLiteOnly
             Recipe recipe = _observableRecipes[0];
             await _databaseConnection.DeleteAsync(recipe);
             _observableRecipes.Remove(recipe);
-        }
-    }
-
-    public class Recipe : INotifyPropertyChanged
-    {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
-
-        private string _name;
-
-        [MaxLength(255)]
-        public string Name
-        {
-            get => _name;
-            set
-            {
-                _name = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
